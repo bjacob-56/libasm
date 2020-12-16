@@ -1,28 +1,20 @@
+SRCS	=   hello_world.s ft_strlen.s ft_strcpy.s
 
-
-SRCS	=   src/printf.c \
-			src/str_type_1.c src/str_type_2.c \
-			src/printf_utils_1.c src/printf_utils_2.c src/printf_utils_len.c \
-			src/ft_num.c
-
-OBJS = ${SRCS:.c=.o}
+OBJS = ${SRCS:.s=.o}
 
 NAME = libasm.a
-CC = gcc
 RM ?= rm -f
-CFLAGS = -Wall -Wextra -Werror -I./includes
+NASM= nasm
+FLAGS = -f macho64
 
 
-.c.o:
-	$(CC) $(CFLAGS) -c $< -o $@
+.s.o:
+	$(NASM) $(FLAGS) -s $< -o $@
 
 $(NAME):	${OBJS}
 	ar rcs ${NAME} ${OBJS}
 
-bonus:	${OBJS}
-	ar rcs ${NAME} ${OBJS}
-
-$(OBJS) : includes/printf.h
+$(OBJS) : libasm.h
 
 all : 		${NAME}
 
