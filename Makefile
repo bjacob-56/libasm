@@ -1,4 +1,4 @@
-SRCS	=   hello_world.s ft_strlen.s ft_strcpy.s
+SRCS	=   ft_strlen.s ft_strcpy.s ft_strcmp.s
 
 OBJS = ${SRCS:.s=.o}
 
