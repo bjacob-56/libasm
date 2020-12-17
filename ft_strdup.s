@@ -4,7 +4,6 @@ extern	_ft_strlen
 extern	_ft_strcpy
 section	.text
 
-
 _ft_strdup:
 		call	_ft_strlen
 		inc		rax
