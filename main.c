@@ -37,23 +37,21 @@ int main(void)
 	int fd = open("file_to_read", O_RDWR);
 	dprintf(1, "fd = %d\n\n", fd);
 
+	// fd = 3;
+
 	dprintf(1, "  ---- ft_write ----  \n");
 	char *buffer = "123456789abcd\n";
-	int size = ft_write(1, buffer, -1);
+	int size = ft_write(1, buffer, 5);
 	dprintf(1, "\nsize = %d\n", size);
+	dprintf(1, "errno = %d\n", errno);
 	dprintf(1, "  -------------------  \n\n");
-
-	dprintf(1, "\nerrno = %d\n\n", errno);
-
-	// fd = 3;
 
 	dprintf(1, "  ---- ft_read ----  \n");
 	char buf[100];
 	size = ft_read(fd, buf, -1);
 	dprintf(1, "buf = %s\nsize = %d\n", buf, size);
+	dprintf(1, "errno = %d\n", errno);
 	dprintf(1, "  -------------------  \n\n");
-
-	dprintf(1, "\nerrno = %d\n\n", errno);
 
 	dprintf(1, "  ---- ft_strdup ----  \n");
 	char *str = "0123456789";
@@ -62,10 +60,6 @@ int main(void)
 	dprintf(1, "str     = %s\nstr_dup = %s\n", str, str_dup);
 	dprintf(1, "  -------------------  \n\n");
 	free(str_dup);
-
-
-//	int test = ft_strlen(NULL);
-//	dprintf(1, "-->%d\n", test);
 
 	return(0);
 }
