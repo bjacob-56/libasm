@@ -2,12 +2,15 @@ global	_ft_write
 extern ___error
 section	.text
 
-errno:
-		; a ajouter
+erreur:
+		push	rax
+		call	___error
+		pop		qword [rax]
+		mov		rax,-1
+		ret
 
 _ft_write:
 		mov		rax,0x2000004
 		syscall
-		cmp		rax,0
-		jz		errno
+		jc		erreur
 		ret
