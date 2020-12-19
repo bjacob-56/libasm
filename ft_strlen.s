@@ -21,4 +21,5 @@ while:
 		jmp		end
 
 end:
+		; mov		rcx,0
 		ret

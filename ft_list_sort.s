@@ -9,11 +9,16 @@ next_elem:
 		jmp		while
 
 switch_data:
+		push	r14
+		push	r13
 		mov		r14,[r9]
 		mov		r13,[r8]
 
 		mov		[r8],r14
 		mov		[r9],r13
+
+		pop		r13
+		pop		r14
 
 		mov		r9,[r9 + 8]
 
@@ -39,9 +44,7 @@ _ft_list_sort:
 		cmp		r8,0
 		jz		end
 		mov		r9,[r8 + 8]
-
 		mov		r10,rsi
-
 		jmp		while
 
 end:

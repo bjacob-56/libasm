@@ -61,6 +61,16 @@ int main(void)
 	dprintf(1, "  -------------------  \n\n");
 	free(str_dup);
 
+	dprintf(1, "  ---- ft_atoi_base ----  \n");
+	char 	*str_nb = "   --+-1a5r45";
+	char 	*base = "0123456789abcdef";
+	int		atoi_res;
+	atoi_res = ft_atoi_base(str_nb, base);
+	dprintf(1, "str_nb = %s\nnb     = %d\n", str_nb, atoi_res);
+	dprintf(1, "  -------------------  \n\n");
+
+
+
 
 	dprintf(1, "  ---- ft_list_size ----  \n");
 
@@ -78,23 +88,58 @@ int main(void)
 	elem2 = malloc(sizeof(t_list));
 	elem2->next = NULL;
 
+
 	elem0->next = elem1;
 	elem1->next = elem2;
-	elem0->data = "127";
-	elem1->data = "124";
-	elem2->data = "0123";
+
+	// char *data0 = malloc(5);
+	// data0[0] = '1';
+	// data0[1] = '2';
+	// data0[2] = '7';
+	// data0[3] = 0;
+	// char *data1 = malloc(5);
+	// data1[0] = '1';
+	// data1[1] = '2';
+	// data1[2] = '4';
+	// data1[3] = 0;
+	// char *data2 = malloc(5);
+	// data2[0] = '0';
+	// data2[1] = '1';
+	// data2[2] = '2';
+	// data2[3] = '3';
+	// data2[4] = 0;
+	// elem0->data = data0;
+	// elem1->data = data1;
+	// elem2->data = data2;
+	
+	elem0->data = "12711";
+	elem1->data = "12411";
+	elem2->data = "012311";
 	begin = elem0;
 
 	lst_len = ft_list_size(begin);
 	dprintf(1, "lst_len = %d\n", lst_len);
 
-	ft_list_push_front(&begin, "1");
+	// ft_list_push_front(&begin, "1");
 
 	lst_len = ft_list_size(begin);
 	dprintf(1, "lst_len = %d\n", lst_len);
 
 
-	ft_list_sort(&begin, &ft_strcmp);
+	// ft_list_sort(&begin, &ft_strcmp);
+
+	// char *test;
+	int	test;
+	// char *sample;
+	// sample = malloc(10);
+	// sample[0] = '1';
+	// sample[1] = '2';
+	// sample[3] = '4';
+	// sample[4] = 0;
+
+	test = ft_list_remove_if(&begin, "12411", &ft_strcmp, free);
+	// dprintf(1, "test = %d\n", test);
+	// ft_list_remove_if(&begin, "124", &ft_strcmp, &ft_strcmp);
 
 	elem = begin;
 	while (elem)
@@ -102,6 +147,8 @@ int main(void)
 		dprintf(1, "%s\n", elem->data);
 		elem = elem->next;
 	}
+
+	dprintf(1, "  -------------------  \n\n");
 
 	return(0);
 }
