@@ -27,8 +27,8 @@ int main(void)
 	dprintf(1, "  -------------------  \n\n");
 
 	dprintf(1, "  ---- ft_strcmp ----  \n");
-	char	*s1 = "abcd";
-	char	*s2 = "abcdef";
+	char	*s1 = "012";
+	char	*s2 = "123";
 	int		diff;
 	diff = ft_strcmp(s1, s2);
 	printf("s1 = %s\ns2 = %s\ndiff = %d\n", s1, s2, diff);
@@ -77,20 +77,24 @@ int main(void)
 	elem1->next = NULL;
 	elem2 = malloc(sizeof(t_list));
 	elem2->next = NULL;
+
 	elem0->next = elem1;
 	elem1->next = elem2;
-	elem0->data = "abc";
-	elem1->data = "def";
-	elem2->data = "hij";
-	begin = NULL;
+	elem0->data = "127";
+	elem1->data = "124";
+	elem2->data = "0123";
+	begin = elem0;
 
 	lst_len = ft_list_size(begin);
 	dprintf(1, "lst_len = %d\n", lst_len);
 
-	ft_list_push_front(&begin, "123");
+	ft_list_push_front(&begin, "1");
 
 	lst_len = ft_list_size(begin);
 	dprintf(1, "lst_len = %d\n", lst_len);
+
+
+	ft_list_sort(&begin, &ft_strcmp);
 
 	elem = begin;
 	while (elem)
