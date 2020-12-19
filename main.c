@@ -61,5 +61,43 @@ int main(void)
 	dprintf(1, "  -------------------  \n\n");
 	free(str_dup);
 
+
+	dprintf(1, "  ---- ft_list_size ----  \n");
+
+	t_list	*elem0;
+	t_list	*elem1;
+	t_list	*elem2;
+	t_list	*begin;
+	t_list	*elem;
+	int		lst_len;
+
+	elem0 = malloc(sizeof(t_list));
+	elem0->next = NULL;
+	elem1 = malloc(sizeof(t_list));
+	elem1->next = NULL;
+	elem2 = malloc(sizeof(t_list));
+	elem2->next = NULL;
+	elem0->next = elem1;
+	elem1->next = elem2;
+	elem0->data = "abc";
+	elem1->data = "def";
+	elem2->data = "hij";
+	begin = NULL;
+
+	lst_len = ft_list_size(begin);
+	dprintf(1, "lst_len = %d\n", lst_len);
+
+	ft_list_push_front(&begin, "123");
+
+	lst_len = ft_list_size(begin);
+	dprintf(1, "lst_len = %d\n", lst_len);
+
+	elem = begin;
+	while (elem)
+	{
+		dprintf(1, "%s\n", elem->data);
+		elem = elem->next;
+	}
+
 	return(0);
 }
