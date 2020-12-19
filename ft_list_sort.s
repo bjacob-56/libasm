@@ -9,10 +9,10 @@ next_elem:
 		jmp		while
 
 switch_data:
-		mov		r11,[r9]
+		mov		r14,[r9]
 		mov		r13,[r8]
 
-		mov		[r8],r11
+		mov		[r8],r14
 		mov		[r9],r13
 
 		mov		r9,[r9 + 8]
