@@ -4,18 +4,31 @@ extern	_ft_strlen
 extern	_ft_strcpy
 section	.text
 
-err_malloc:
+_ft_strdup:
+		push	qword rdi
+		push	qword rsi
+
+		call	_ft_strlen	; rax = ft_strlen(src)
+		inc		rax			; rax++
+
+		push	rdi
+
+		mov		rdi,rax
+		call	_malloc		; dest = malloc(ft_strlen(src) + 1)
+		cmp		rax,0
+		jz		err_malloc	; if malloc failed --> ret
+
+		pop		rsi			; rsi = src
+
+		mov		rdi,rax		; rdi = dest
+		call	_ft_strcpy	; ft_strcpy(dest, src)
+
+		pop		qword rsi
+		pop		qword rdi
 		ret
 
-_ft_strdup:
-		call	_ft_strlen
-		inc		rax
-		push	rdi
-		mov		rdi,rax
-		call	_malloc
-		cmp		rax,0
-		jz		err_malloc
+err_malloc:
+		pop		rdi
 		pop		rsi
-		mov		rdi,rax
-		call	_ft_strcpy
+		pop		rdi
 		ret

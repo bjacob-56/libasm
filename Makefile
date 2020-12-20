@@ -1,10 +1,13 @@
 SRCS	=   ft_strlen.s ft_strcpy.s ft_strcmp.s \
 			ft_write.s ft_read.s \
-			ft_strdup.s \
-			ft_atoi_base.s \
-			ft_list_push_front.s ft_list_size.s ft_list_sort.s ft_list_remove_if.s
+			ft_strdup.s
 
-OBJS = ${SRCS:.s=.o}
+SRCS_bonus	=	ft_atoi_base_bonus.s \
+				ft_list_push_front_bonus.s ft_list_size_bonus.s ft_list_sort_bonus.s
+
+OBJS = $(SRCS:.s=.o)
+
+OBJS_bonus = $(SRCS_bonus:.s=.o)
 
 NAME = libasm.a
 RM ?= rm -f
@@ -15,19 +18,24 @@ FLAGS = -f macho64
 .s.o:
 	$(NASM) $(FLAGS) -s $< -o $@
 
-$(NAME):	${OBJS}
-	ar rcs ${NAME} ${OBJS}
+$(NAME):	$(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
-$(OBJS) : libasm.h
+bonus:		$(OBJS_bonus) $(NAME)
+	ar rcs $(NAME) $(OBJS_bonus)
 
-all : 		${NAME}
+$(OBJS): libasm.h
 
-clean :
-	${RM} ${OBJS}
+$(OBJS_bonus): libasm.h
 
-fclean : 	clean
-	${RM} ${NAME}
+all: 		$(NAME) bonus
 
-re :		fclean all
+clean:
+	$(RM) $(OBJS) $(OBJS_bonus)
+
+fclean: 	clean
+	$(RM) $(NAME)
+
+re:		fclean all
 
 .PHONY: all clean fclean re

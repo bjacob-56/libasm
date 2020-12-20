@@ -2,15 +2,15 @@ global	_ft_read
 extern ___error
 section	.text
 
-erreur:
-		push	rax
-		call	___error
-		pop		qword [rax]
-		mov		rax,-1
+error:
+		push	qword rax		; save error code
+		call	___error		; put errno address in rax
+		pop		qword [rax]		; *errno = error code
+		mov		rax,-1			; rax = -1
 		ret
 
 _ft_read:
-		mov		rax,0x2000003
+		mov		rax,0x2000003	; syscall for read
 		syscall
-		jc		erreur
+		jc		error			; if read fails
 		ret
