@@ -26,15 +26,15 @@ int main(void)
 	int	test_atoi_base;
 	int	test_list;
 
-	test_strlen = 1;
-	test_strcpy = 1;
-	test_strcmp = 1;
-	test_write = 1;
-	test_read = 1;
-	test_strdup = 1;
+	test_strlen = 0;
+	test_strcpy = 0;
+	test_strcmp = 0;
+	test_write = 0;
+	test_read = 0;
+	test_strdup = 0;
 
 	test_atoi_base = 1;
-	test_list = 1;
+	test_list = 0;
 
 	printf("\n======================  MANDATORY PART  ======================\n");
 
@@ -124,7 +124,9 @@ int main(void)
 	if (test_atoi_base)
 	{
 		printf("----------------  ft_atoi_base  ----------------\n");
-		char	*str_atoi_nb = "   --+-1a5r45";
+		// char	*str_atoi_nb = "   --+-1a5r45";
+
+		char	*str_atoi_nb = "ff";
 		char	*str_atoi_base = "0123456789abcdef";
 		int		atoi_nb;
 
@@ -177,6 +179,10 @@ int main(void)
 		ft_printf_list(begin);
 		printf("---------------------------------------------\n");
 	}
+
+	free(elem0);
+	free(elem1);
+	free(elem2);
 
 	printf("\n==============================================================\n");
 

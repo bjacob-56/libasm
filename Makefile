@@ -10,8 +10,8 @@ OBJS = $(SRCS:.s=.o)
 OBJS_bonus = $(SRCS_bonus:.s=.o)
 
 NAME = libasm.a
-RM ?= rm -f
-NASM= nasm
+RM = rm -f
+NASM = nasm
 FLAGS = -f macho64
 
 
