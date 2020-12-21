@@ -5,6 +5,8 @@ section	.text
 	; rsi = int (*cmp)()
 
 _ft_list_sort:
+		sub		rsp,8			; align stack
+
 		mov		r8,[rdi]		; r8 = *begin_list
 		cmp		r8,0
 		jz		end				; if(!(*begin_list)) --> exit
@@ -48,3 +50,5 @@ switch_data:
 		jmp		while
 
 end:		
+		add		rsp,8			; realign stack
+		ret

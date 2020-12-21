@@ -26,15 +26,15 @@ int main(void)
 	int	test_atoi_base;
 	int	test_list;
 
-	test_strlen = 0;
-	test_strcpy = 0;
-	test_strcmp = 0;
-	test_write = 0;
-	test_read = 0;
-	test_strdup = 0;
+	test_strlen = 1;
+	test_strcpy = 1;
+	test_strcmp = 1;
+	test_write = 1;
+	test_read = 1;
+	test_strdup = 1;
 
 	test_atoi_base = 1;
-	test_list = 0;
+	test_list = 1;
 
 	printf("\n======================  MANDATORY PART  ======================\n");
 
@@ -136,53 +136,56 @@ int main(void)
 		printf("---------------------------------------------\n\n");
 	}
 
-	t_list	*elem0;
-	t_list	*elem1;
-	t_list	*elem2;
-	t_list	*begin;
-	t_list	*elem;
-
-	elem0 = malloc(sizeof(t_list));
-	elem0->next = NULL;
-	elem1 = malloc(sizeof(t_list));
-	elem1->next = NULL;
-	elem2 = malloc(sizeof(t_list));
-	elem2->next = NULL;
-
-	begin = elem0;
-	elem0->next = elem1;
-	elem1->next = elem2;
-
-	char *str_lst0 = "124";
-	char *str_lst1 = "12";
-	char *str_lst2 = "0123";
-
-	elem0->data = str_lst0;
-	elem1->data = str_lst1;
-	elem2->data = str_lst2;
-
 	if (test_list)
 	{
+		t_list	*elem0;
+		t_list	*elem1;
+		t_list	*elem2;
+		t_list	*begin;
+		t_list	*elem;
+
+		elem0 = malloc(sizeof(t_list));
+		elem0->next = NULL;
+		elem1 = malloc(sizeof(t_list));
+		elem1->next = NULL;
+		elem2 = malloc(sizeof(t_list));
+		elem2->next = NULL;
+
+		begin = elem0;
+		elem0->next = elem1;
+		elem1->next = elem2;
+
+		char *str_lst0;
+		char *str_lst1;
+		char *str_lst2;
+
+		str_lst0 = ft_strdup("124");
+		str_lst1 = ft_strdup("12");
+		str_lst2 = ft_strdup("0123");
+
+		elem0->data = str_lst0;
+		elem1->data = str_lst1;
+		elem2->data = str_lst2;
+		
 		printf("----------------  ft_list  ----------------\n");
 		char	*str_lst_push = "234";
 
 		ft_printf_list(begin);
 
-		printf(">>> push_front %s <<<\n", str_lst_push);
-
+		printf(">>> push_front --> %s <<<\n", str_lst_push);
 		ft_list_push_front(&begin, str_lst_push);
 		ft_printf_list(begin);
 
 		printf(">>> sort_list <<<\n");
-
 		ft_list_sort(&begin, ft_strcmp);
+		ft_printf_list(begin);
+
+		char *str_lst_remove_if = "12";
+		printf(">>> remove_if --> %s <<<\n", str_lst_remove_if);
+		ft_list_remove_if(&begin, str_lst_remove_if, ft_strcmp, free);
 		ft_printf_list(begin);
 		printf("---------------------------------------------\n");
 	}
-
-	free(elem0);
-	free(elem1);
-	free(elem2);
 
 	printf("\n==============================================================\n");
 
